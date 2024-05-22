@@ -1,5 +1,7 @@
 import './App.css';
 
+import DisplayArticleContent from './Wiki-App-Components/DisplayArticleContent';
+
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -39,9 +41,8 @@ function App() {
       <h1>Fetch Wikipedia Data</h1>
       <button onClick={fetchHandler}>Fetch</button>
       <br />
-      {WikipediaContent ? <div>{WikipediaContent.map(content => (
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      ))}</div> : error ? (<h2>{error}</h2>):(<h2>Loading...</h2>)}
+      
+      {WikipediaContent ? <DisplayArticleContent WikipediaContent={WikipediaContent}/> : error ? (<h2>{error}</h2>):(<h2>Loading...</h2>)}
     </div>
   );
 }
