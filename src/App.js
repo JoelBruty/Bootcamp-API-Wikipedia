@@ -1,25 +1,29 @@
 import './App.css';
 
 import DisplayArticleContent from './Wiki-App-Components/DisplayArticleContent';
+import SearchForm from './Wiki-App-Components/SearchForm';
 
 import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [WikipediaData, setWikipediaData] = useState(null)
+  // const [WikipediaData, setWikipediaData] = useState(null)
 
   const [WikipediaTitle, setWikipediaTitle] = useState(null)
   const [WikipediaContent, setWikipediaContent] = useState(null)
+  const [WikipediaMissing, setWikipediaMissing] = useState(null)
   const [error, setError] = useState(null)
 
-  let titleQuery = "Wii U" //This will be the title/article that is searched for in the query
+  const [titleQuery, setTitleQuery] = useState("Wikipedia") //This will be the title/article that is searched for in the query
 
   const fetchHandler = async () => {
     //Clear content in state (makes loading text appear again and if an error occured stops displaying the message)
-    setWikipediaData(null)
+
+    // setWikipediaData(null)
 
     setWikipediaTitle(null)
     setWikipediaContent(null)
+    setWikipediaMissing(null)
     setError(null)
 
     try {
@@ -32,10 +36,13 @@ function App() {
 
       const { pages } = await data.query;
 
-      setWikipediaData(Object.keys(pages).map(id => [pages[id].title, pages[id].extract]))
+      //Gets specific data from response query
+
+      // setWikipediaData(Object.keys(pages).map(id => [pages[id].title, pages[id].extract]))
 
       setWikipediaTitle(Object.keys(pages).map(id => pages[id].title))
-      setWikipediaContent(Object.keys(pages).map(id => pages[id].extract)) //Gets extract from response query
+      setWikipediaContent(Object.keys(pages).map(id => pages[id].extract))
+      setWikipediaMissing(Object.keys(pages).map(id => pages[id].missing))
 
     } catch (err) { //Catch error
       setError(`Error: ${err.message}`) //Set error message
@@ -48,15 +55,30 @@ function App() {
 
   }, [])
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (titleQuery) //Only add if the article title has been entered
+    {
+      fetchHandler()
+    }
+    else {
+      alert("Please enter the name of the article") //Give an alert to the user if a task hasn't been given
+    }
+  }
+
   return (
     <div>
       <div className="form">
         <h1>Fetch Wikipedia Data</h1>
-        <button onClick={fetchHandler}>Fetch</button>
+        <SearchForm currentArticle={WikipediaTitle} setTitleQuery={setTitleQuery} handleSubmit={handleSubmit} />
       </div>
       <br />
       <div>
-        {WikipediaContent ? <DisplayArticleContent WikipediaData={WikipediaData} WikipediaTitle={WikipediaTitle} WikipediaContent={WikipediaContent} /> : error ? (<div className="error"><h2>{error}</h2></div>) : (<div className="loading"><h2>Loading...</h2></div>)}
+        {WikipediaContent ? <DisplayArticleContent
+          // WikipediaData={WikipediaData}
+          WikipediaTitle={WikipediaTitle}
+          WikipediaContent={WikipediaContent}
+          WikipediaMissing={WikipediaMissing} /> : error ? (<div className="error"><h2>{error}</h2></div>) : (<div className="loading"><h2>Loading...</h2></div>)}
       </div>
     </div>
   );

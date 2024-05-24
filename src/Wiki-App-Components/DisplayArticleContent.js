@@ -1,13 +1,15 @@
 function DisplayArticleContent(props) {
-    const Data = props.WikipediaData
+    // const Data = props.WikipediaData
 
     const Title = props.WikipediaTitle
     const Article = props.WikipediaContent
+    const Missing = props.WikipediaMissing
 
-    console.log(Data)
+    // console.log(Data)
 
-    console.log(Title)
-    console.log(Article)
+    // console.log(Title)
+    // console.log(Article)
+    // console.log(Missing)
 
     return (
         <div>
@@ -18,7 +20,7 @@ function DisplayArticleContent(props) {
                 ))}
             </div>
 
-            {/* {Article ? (
+            {/* {Missing === undefined ? (
                 <div className="wiki">
                     <h2>{Title}</h2>
                     {Article.map(content => (
