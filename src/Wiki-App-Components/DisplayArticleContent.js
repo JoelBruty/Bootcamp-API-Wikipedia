@@ -3,24 +3,24 @@ function DisplayArticleContent(props) {
 
     const Title = props.WikipediaTitle
     const Article = props.WikipediaContent
-    const Missing = props.WikipediaMissing
+    const ID = props.WikipediaID
 
     // console.log(Data)
 
     // console.log(Title)
     // console.log(Article)
-    // console.log(Missing)
+    // console.log(ID[0])
 
     return (
         <div>
-            <div className="wiki">
+            {/* <div className="wiki">
                 <h2>{Title}</h2>
                 {Article.map(content => (
                     <div dangerouslySetInnerHTML={{ __html: content }}></div>
                 ))}
-            </div>
+            </div> */}
 
-            {/* {Missing === undefined ? (
+            {ID[0] != undefined ? (
                 <div className="wiki">
                     <h2>{Title}</h2>
                     {Article.map(content => (
@@ -30,9 +30,9 @@ function DisplayArticleContent(props) {
             ) : (
                 <div className="error">
                     <h2>{Title}</h2>
-                    <p>Article content is undefined</p>
+                    <p>Article does not exist</p>
                 </div>
-            )} */}
+            )}
         </div>
     )
 }

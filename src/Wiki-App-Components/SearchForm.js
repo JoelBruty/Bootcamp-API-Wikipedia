@@ -1,25 +1,28 @@
-function SearchForm ({
+function SearchForm({
     handleSubmit,
     input,
     currentArticle,
-    setTitleQuery}) {
-    
+    WikipediaID,
+    setTitleQuery }) {
+
 
     return (
         <form onSubmit={handleSubmit}>
             <label>
                 Search for article:
-                <br/>
+                <br />
                 <input
-                type = "text"
-                value = {input}
-                onChange={(e) => setTitleQuery(e.target.value)}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setTitleQuery(e.target.value)}
                 />
             </label>
             <button>Fetch</button>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <label>Current article: {currentArticle}</label>
+            <br />
+            <label>Article ID: {WikipediaID}</label>
         </form>
     )
 }
