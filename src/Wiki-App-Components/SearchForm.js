@@ -11,6 +11,7 @@ function SearchForm({
             <label>
                 Search for article:
                 <br />
+                <br />
                 <input
                     type="text"
                     value={input}

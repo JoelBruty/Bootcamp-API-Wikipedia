@@ -10,6 +10,7 @@ function App() {
   // const [WikipediaData, setWikipediaData] = useState(null)
 
   const [WikipediaTitle, setWikipediaTitle] = useState(null)
+  const [WikipediaImage, setWikipediaImage] = useState(null)
   const [WikipediaContent, setWikipediaContent] = useState(null)
   const [WikipediaID, setWikipediaID] = useState(null)
   const [error, setError] = useState(null)
@@ -22,13 +23,14 @@ function App() {
     // setWikipediaData(null)
 
     setWikipediaTitle(null)
+    setWikipediaImage(null)
     setWikipediaContent(null)
     setWikipediaID(null)
 
     setError(null)
 
     try {
-      let response = await fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts&redirects=true&titles=${titleQuery}`) //API query
+      let response = await fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts|pageimages&redirects=true&titles=${titleQuery}`) //API query
       if (!response.ok) { //If response is not OK
         throw new Error(response.statusText) //Throw error with status
       }
@@ -42,6 +44,7 @@ function App() {
       // setWikipediaData(Object.keys(pages).map(id => [pages[id].title, pages[id].extract]))
 
       setWikipediaTitle(Object.keys(pages).map(id => pages[id].title))
+      setWikipediaImage(Object.keys(pages).map(id => pages[id].thumbnail.source)) //This causes an error if the article doesn't exist
       setWikipediaContent(Object.keys(pages).map(id => pages[id].extract))
       setWikipediaID(Object.keys(pages).map(id => pages[id].pageid))
 
@@ -82,6 +85,7 @@ function App() {
         {WikipediaContent ? <DisplayArticleContent
           // WikipediaData={WikipediaData}
           WikipediaTitle={WikipediaTitle}
+          WikipediaImage={WikipediaImage}
           WikipediaContent={WikipediaContent}
           WikipediaID={WikipediaID} /> : error ? (<div className="error"><h2>{error}</h2></div>) : (<div className="loading"><h2>Loading...</h2></div>)}
       </div>

@@ -1,12 +1,13 @@
 body{
-  margin: 5%;
+  margin: 3%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 .form{
   border: solid;
   border-style: dashed;
   border-color: brown;
-  padding: 5%;
+  padding: 3%;
   background-color: beige;
 }
 
@@ -14,7 +15,7 @@ body{
   border: solid;
   border-style: dashed;
   border-color: brown;
-  padding: 5%;
+  padding: 3%;
   background-color: beige;
   /* background-color: rgb(190, 237, 255); */
 }
@@ -23,7 +24,7 @@ body{
   border: solid;
   border-style: dashed;
   border-color: brown;
-  padding: 5%;
+  padding: 3%;
   background-color: rgb(255, 255, 154);
 }
 
@@ -31,6 +32,6 @@ body{
   border: solid;
   border-style: dashed;
   border-color: brown;
-  padding: 5%;
+  padding: 3%;
   background-color: rgb(255, 139, 139);
 }
