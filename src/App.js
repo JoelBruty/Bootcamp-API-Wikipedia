@@ -44,7 +44,7 @@ function App() {
       // setWikipediaData(Object.keys(pages).map(id => [pages[id].title, pages[id].extract]))
 
       setWikipediaTitle(Object.keys(pages).map(id => pages[id].title))
-      setWikipediaImage(Object.keys(pages).map(id => pages[id].thumbnail.source)) //This causes an error if the article doesn't exist
+      setWikipediaImage(Object.keys(pages).map(id => pages[id].thumbnail.source)) //NOTE: This currently causes an error if the article doesn't have an image or the article doesn't exist
       setWikipediaContent(Object.keys(pages).map(id => pages[id].extract))
       setWikipediaID(Object.keys(pages).map(id => pages[id].pageid))
 
