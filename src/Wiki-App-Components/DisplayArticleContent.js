@@ -6,9 +6,9 @@ function DisplayArticleContent(props) {
     const Article = props.WikipediaContent
     const ID = props.WikipediaID
 
-    if (Image.source != undefined){
-        let source = Image.source
-    }
+    // if (Image.source != undefined){
+    //     let source = Image.source
+    // }
 
     // console.log(Data)
 
@@ -30,7 +30,8 @@ function DisplayArticleContent(props) {
             ) : (
                 <div className="error">
                     <h2>{Title}</h2>
-                    <p>Article does not exist - make sure you've typed the article name properly</p>
+                    <p>Article not found - make sure you've typed the article name properly</p>
+                    <p>If the article exists and it is typed correctly, you may need to type the article name with correct capitalisation</p>
                 </div>
             )}
         </div>
