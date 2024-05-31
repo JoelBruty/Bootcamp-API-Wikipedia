@@ -6,10 +6,6 @@ function DisplayArticleContent(props) {
     const Article = props.WikipediaContent
     const ID = props.WikipediaID
 
-    // if (Image.source != undefined){
-    //     let source = Image.source
-    // }
-
     // console.log(Data)
 
     // console.log(Title)
@@ -19,7 +15,7 @@ function DisplayArticleContent(props) {
 
     return (
         <div>
-            {ID[0] != undefined ? (
+            {ID[0] !== undefined ? (
                 <div className="wiki">
                     <h2>{Title}</h2>
                     <img src = {Image}></img>
