@@ -44,12 +44,10 @@ function App() {
       // setWikipediaData(Object.keys(pages).map(id => [pages[id].title, pages[id].extract]))
 
       setWikipediaTitle(Object.keys(pages).map(id => pages[id].title))
-      try{
+      try{ //Try to get image
       setWikipediaImage(Object.keys(pages).map(id => pages[id].thumbnail.source))
       }
-      catch{
-      setWikipediaImage(null)
-      }
+      catch{} //Catch so the lack of thumbnail.source in the response doesn't cause an error
       setWikipediaContent(Object.keys(pages).map(id => pages[id].extract))
       setWikipediaID(Object.keys(pages).map(id => pages[id].pageid))
 
@@ -66,12 +64,12 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (titleQuery) //Only add if the article title has been entered
+    if (titleQuery) //Only fetch if the article title has been entered
     {
       fetchHandler()
     }
     else {
-      alert("Please enter the name of the article") //Give an alert to the user if a task hasn't been given
+      alert("Please enter the name of the article") //Give an alert to the user to provide an article
     }
   }
 
